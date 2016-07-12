@@ -192,6 +192,20 @@
                     "label": "Never"
                 }
             ]
+        },
+        {
+            "name": "background_filter_opacity",
+            "title": "Background Filter Opacity (%)",
+            "description": "Leave at 0 to disable.",
+            "type": "string",
+            "value": "0"
+        },
+        {
+            "name": "background_filter_color",
+            "title": "Background Filter Color",
+            "description": "Hexadecimal color to apply to the background filter.",
+            "type": "string",
+            "value": "#1C1C1C"
         }
     ]
 }

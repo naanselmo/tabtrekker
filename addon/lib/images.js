@@ -25,6 +25,8 @@ const IMAGES_SHOW_LOADING_MSG = 'images_show_loading';
 const IMAGES_DISPLAY_MSG = 'images_display';
 //preferences
 const SHOW_IMAGE_INFO_PREF = 'show_image_info';
+const BACKGROUND_FILTER_OPACITY_PREF = 'background_filter_opacity';
+const BACKGROUND_FILTER_COLOR_PREF = 'background_filter_color';
 const IMAGES_PREFS = 'images';
 const IMAGES_CHOSEN_ID_PREFS = 'images_chosen_id';
 const IMAGES_FALLBACK_ID_PREFS = 'images_fallback_id';
@@ -37,7 +39,7 @@ const IMAGES_RESOURCE_URI_PREFIX = IMAGES_RESOURCE_URI_PROTOCOL + 'tabtrekker_im
 const IMAGES_CHOOSE_INTERVAL_MILLIS = 5 * 60 * 1000; //5 minutes
 const IMAGES_DOWNLOAD_DELAY = 15 * 1000; //15 seconds
 const IMAGES_DOWNLOAD_DIR = 'images';
-const IMAGES_FALLBACKS = ['images/0.jpg', 'images/1.jpg', 'images/2.jpg', 
+const IMAGES_FALLBACKS = ['images/0.jpg', 'images/1.jpg', 'images/2.jpg',
                           'images/3.jpg', 'images/4.jpg', 'images/5.jpg'];
 const IMAGES_UPDATE_INTERVAL_MILLIS = 24 * 60 * 60 * 1000; //24 hours
 const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
@@ -93,6 +95,10 @@ const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
         data.fallback = TabTrekkerImages.getFallbackImage();
         data[SHOW_IMAGE_INFO_PREF] = simplePrefs.prefs[SHOW_IMAGE_INFO_PREF];
 
+        //get filter details
+        data[BACKGROUND_FILTER_OPACITY_PREF] = simplePrefs.prefs[BACKGROUND_FILTER_OPACITY_PREF];
+        data[BACKGROUND_FILTER_COLOR_PREF] = simplePrefs.prefs[BACKGROUND_FILTER_COLOR_PREF];
+
         //point image's resource URI to image's file URI
         if(image.resourceUri && image.fileUri) {
             var baseImageResourceUri = image.resourceUri
@@ -120,7 +126,7 @@ const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
         var lastChosen = parseFloat(
             simplePrefs.prefs[IMAGES_LASTCHOSEN_TIME_PREFS]);
         var chosenId = simplePrefs.prefs[IMAGES_CHOSEN_ID_PREFS];
-        
+
         //no image previously chosen
         if((!lastChosen && lastChosen !== 0)
             || (!chosenId && chosenId !== 0)) {
@@ -130,7 +136,7 @@ const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
         //check when the previous image was chosen
         var now = Date.now();
         var elapsed = now - lastChosen;
-        
+
         return (elapsed >= IMAGES_CHOOSE_INTERVAL_MILLIS);
     },
 
@@ -169,7 +175,7 @@ const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
             return;
         }
 
-        //choose next image 
+        //choose next image
         var chosenId = simplePrefs.prefs[IMAGES_CHOSEN_ID_PREFS];
         chosenId = chosenId == null ? 0 : ((chosenId + 1) % imageSet.numImages);
 
@@ -280,7 +286,7 @@ const IMAGES_UPDATE_WAIT_MILLIS = 15 * 1000; //15 seconds
     disableUpdates: function(millis) {
         var lastUpdated = String(Date.now() - IMAGES_UPDATE_INTERVAL_MILLIS
             + millis);
-        simplePrefs.prefs[IMAGES_LASTUPDATED_TIME_PREFS] = lastUpdated; 
+        simplePrefs.prefs[IMAGES_LASTUPDATED_TIME_PREFS] = lastUpdated;
     },
 
     /**

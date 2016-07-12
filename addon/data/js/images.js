@@ -6,6 +6,8 @@ const IMAGES_SHOW_LOADING_MSG = 'images_show_loading';
 const IMAGES_DISPLAY_MSG = 'images_display';
 //preferences
 const SHOW_IMAGE_INFO_PREF = 'show_image_info';
+const BACKGROUND_FILTER_OPACITY_PREF = 'background_filter_opacity';
+const BACKGROUND_FILTER_COLOR_PREF = 'background_filter_color';
 //other
 const IMAGE_LOADED_CLASS = 'image_loaded';
 const SHOW_IMAGE_DELAY = 50;
@@ -69,7 +71,6 @@ var TabTrekkerImages = {
         //local images (file://image.png) might not be detected, but it seems
         //to be working in firefox
         $(document.createElement('img')).on('load', function() {
-
             $(this).remove();
 
             //if image wasn't actually loaded
@@ -77,6 +78,9 @@ var TabTrekkerImages = {
                 callback();
                 return;
             }
+
+            //set filter visibility
+            TabTrekkerImages.showBackgroundFilter(data[BACKGROUND_FILTER_COLOR_PREF], data[BACKGROUND_FILTER_OPACITY_PREF]);
 
             //hide loading spinner then set background image
             TabTrekkerImages.hideLoadingSpinner(function() {
@@ -200,7 +204,23 @@ var TabTrekkerImages = {
                 $('#image_info_container').css('display', 'none');
                 break;
         }
+    },
+
+    /**
+     * Shows the image filter.
+     */
+    showBackgroundFilter: function(color, opacity) {
+        $('#background_filter').css('background-color', color);
+        $('#background_filter').css('opacity', opacity/100);
+    },
+
+    /**
+     * Hides the image filter.
+     */
+    hideBackgroundFilter: function() {
+        $('#background_filter').css('opacity', 0);
     }
+
 };
 
 //listen for messages
