@@ -15,6 +15,7 @@ const search = require('./search').TabTrekkerSearch;
 const time = require('./time').TabTrekkerTime;
 const utils = require('./utils').TabTrekkerUtils;
 const weather = require('./weather').TabTrekkerWeather;
+const filter = require('./filter').TabTrekkerFilter;
 
 /* Constants */
 //preferences
@@ -32,12 +33,12 @@ const HTML_PAGE = 'tabtrekker.html';
 var TabTrekkerMain = {
 
     /**
-     * Workers associated with TabTrekker pages. 
+     * Workers associated with TabTrekker pages.
      */
     workers: [],
 
     /**
-     * Overrides new tab page if addon is enabled. 
+     * Overrides new tab page if addon is enabled.
      * Resets new tab page if addon is disabled.
      */
     setNewTabPage: function(keepExistingPage) {
@@ -48,7 +49,7 @@ var TabTrekkerMain = {
             if(newTabUrl) {
                 newTabUrl.override(TabTrekkerMain.getNewTabUrl());
             }
-            // Always set new tab url preference (to avoid conflicts with 
+            // Always set new tab url preference (to avoid conflicts with
             // other tab addons that read the preference, such as Tabs Mix Plus)
             globalPrefs.set(GLOBAL_NEWTAB_PREF, TabTrekkerMain.getNewTabUrl());
         } else if(!keepExistingPage) {
@@ -57,7 +58,7 @@ var TabTrekkerMain = {
     },
 
     /**
-     * Overrides home page if addon is enabled. 
+     * Overrides home page if addon is enabled.
      * Resets home page if addon is disabled.
      */
     setHomePage: function(keepExistingPage) {
@@ -79,7 +80,7 @@ var TabTrekkerMain = {
         if(newTabUrl) {
             newTabUrl.reset();
         }
-        // Always set new tab url preference (to avoid conflicts with 
+        // Always set new tab url preference (to avoid conflicts with
         // other tab addons that read the preference, such as Tabs Mix Plus)
         globalPrefs.reset(GLOBAL_NEWTAB_PREF);
     },
@@ -145,7 +146,8 @@ pageMod.PageMod({
                         self.data.url('js/menu.js'),
                         self.data.url('js/search.js'),
                         self.data.url('js/time.js'),
-                        self.data.url('js/weather.js')],
+                        self.data.url('js/weather.js'),
+                        self.data.url('js/filter.js')],
     contentStyleFile: [self.data.url('css/bootstrap.min.css'),
                        self.data.url('css/meteocons.css'),
                        self.data.url('css/tabtrekker.css'),
@@ -155,14 +157,14 @@ pageMod.PageMod({
     onAttach: function(worker) {
         //immediately add worker
         utils.addWorker(TabTrekkerMain.workers, worker);
-        
+
         //add worker on page show
         worker.on('pageshow', function() { utils.addWorker(TabTrekkerMain.workers, this); });
-        
+
         //remove workers when page is removed or hidden
         worker.on('pagehide', function() { utils.removeWorker(TabTrekkerMain.workers, this); });
         worker.on('detach', function() { utils.removeWorker(TabTrekkerMain.workers, this); });
-        
+
         //initialize modules
         history.initHistory(worker);
         images.initImages(worker);
@@ -170,6 +172,7 @@ pageMod.PageMod({
         search.initSearch(worker);
         time.initTime(worker);
         weather.initWeather(worker);
+        filter.initFilter(worker);
     }
 });
 

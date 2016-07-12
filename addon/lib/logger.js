@@ -5,13 +5,13 @@
  */
 var TabTrekkerLogger = {
 
-    logLevel: false,
+    logLevel: true,
 
-    infoLevel: false,
+    infoLevel: true,
     
-    warnLevel: false,
-    
-    errorLevel: false,
+    warnLevel: true,
+
+    errorLevel: true,
 
     log: function(msg, args) {
         if(TabTrekkerLogger.logLevel) {
@@ -42,7 +42,7 @@ var TabTrekkerLogger = {
             }
         }
     },
-    
+
     error: function(msg, args) {
         if(TabTrekkerLogger.errorLevel) {
             if(args) {

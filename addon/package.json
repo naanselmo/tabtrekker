@@ -194,6 +194,27 @@
             ]
         },
         {
+            "name": "background_filter",
+            "title": "Background filter",
+            "description": "\"Background image\" will apply the filter to the entire image, while \"Behind text\" will only apply it in regions where there is text",
+            "type": "radio",
+            "value": "nowhere",
+            "options": [
+                {
+                    "value": "nowhere",
+                    "label": "Nowhere"
+                },
+                {
+                    "value": "background_image",
+                    "label": "Background image"
+                },
+                {
+                    "value": "behind_text",
+                    "label": "Behind text"
+                }
+            ]
+        },
+        {
             "name": "background_filter_opacity",
             "title": "Background Filter Opacity (%)",
             "description": "Leave at 0 to disable.",
