@@ -13,7 +13,7 @@ var tabtrekker; //load on initialization to ensure main module is loaded
 const HIDE_FILTER_MSG = 'hide_filter';
 const FILTER_MSG = 'filter';
 //preferences
-const BACKGROUND_FILTER_LOCATION = 'background_filter';
+const BACKGROUND_FILTER_LOCATION_PREF = 'background_filter';
 const BACKGROUND_FILTER_OPACITY_PREF = 'background_filter_opacity';
 const BACKGROUND_FILTER_COLOR_PREF = 'background_filter_color';
 
@@ -29,7 +29,7 @@ var TabTrekkerFilter = {
         tabtrekker = require('./main').TabTrekkerMain;
 
         //don't initialize filter when it isn't to be displayed anywhere
-        var filterLocation = simplePrefs.prefs[BACKGROUND_FILTER_LOCATION];
+        var filterLocation = simplePrefs.prefs[BACKGROUND_FILTER_LOCATION_PREF];
         if(filterLocation === 'nowhere') {
             utils.emit(tabtrekker.workers, worker, HIDE_FILTER_MSG);
             return;
@@ -38,7 +38,7 @@ var TabTrekkerFilter = {
         logger.log('Initializing filter.');
 
         var options = {}
-        options[BACKGROUND_FILTER_LOCATION] = filterLocation;
+        options[BACKGROUND_FILTER_LOCATION_PREF] = filterLocation;
         options[BACKGROUND_FILTER_OPACITY_PREF] = simplePrefs.prefs[BACKGROUND_FILTER_OPACITY_PREF];
         options[BACKGROUND_FILTER_COLOR_PREF] = simplePrefs.prefs[BACKGROUND_FILTER_COLOR_PREF];
         utils.emit(tabtrekker.workers, worker, FILTER_MSG, options);

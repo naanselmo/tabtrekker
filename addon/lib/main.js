@@ -16,6 +16,7 @@ const time = require('./time').TabTrekkerTime;
 const utils = require('./utils').TabTrekkerUtils;
 const weather = require('./weather').TabTrekkerWeather;
 const filter = require('./filter').TabTrekkerFilter;
+const todo = require('./todo').TabTrekkerTodo;
 
 /* Constants */
 //preferences
@@ -147,7 +148,8 @@ pageMod.PageMod({
                         self.data.url('js/search.js'),
                         self.data.url('js/time.js'),
                         self.data.url('js/weather.js'),
-                        self.data.url('js/filter.js')],
+                        self.data.url('js/filter.js'),
+                        self.data.url('js/todo.js')],
     contentStyleFile: [self.data.url('css/bootstrap.min.css'),
                        self.data.url('css/meteocons.css'),
                        self.data.url('css/tabtrekker.css'),
@@ -173,6 +175,7 @@ pageMod.PageMod({
         time.initTime(worker);
         weather.initWeather(worker);
         filter.initFilter(worker);
+        todo.initTodo(worker);
     }
 });
 

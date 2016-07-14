@@ -395,3 +395,73 @@ input:focus::-moz-placeholder {
     background-repeat: no-repeat;
     background-size: cover;
 }
+#todo_container {
+    position: fixed;
+    right: 0;
+    height: 50vh;
+    margin: 20vh 5vw;
+    transform-style: preserve-3d;
+}
+#todo_form {
+    transform: translateY(50%);
+}
+#todo_input {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+    font-size: 1.5em;
+    font-weight: 300;
+    padding: 0.3em 1.5em 0.3em 0.6em;
+    border-radius: 3px;
+    transition: background .3s ease, border .3s ease, color .3s ease, box-shadow .3s ease;
+    width: 100%;
+}
+#todo_add {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    padding: 0.3em;
+    position: absolute;
+    right: 0;
+    top: 0.1em;
+    transition: color .3s ease;
+}
+#todo_input:hover, #todo_input:focus {
+    border-color: transparent;
+}
+#todo_input:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+#todo_input:hover, #todo_add.hover, .todo_button.hover {
+    color: #fff;
+}
+#todo_input.focus {
+    color: rgba(25, 25, 25, 0.85);
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+#todo_add.focus, .todo_button:focus {
+    color: rgba(75, 75, 75, 0.75);
+}
+.todo_text {
+    font-size: 1.2em;
+    font-weight: 300;
+    padding: 0.3em 1.5em 0.3em 0.6em;
+    border-radius: 3px;
+    transition: background .3s ease, border .3s ease, color .3s ease, box-shadow .3s ease;
+    width: 100%;
+}
+.todo_button {
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    padding: 0.3em;
+    position: absolute;
+    right: 0;
+    top: 0.1em;
+    transition: color .3s ease;
+}
+.todo_item {
+    position: relative;
+}
+.strikethrough {
+    text-decoration: line-through;
+}

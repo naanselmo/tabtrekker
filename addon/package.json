@@ -227,6 +227,26 @@
             "description": "Hexadecimal color to apply to the background filter.",
             "type": "string",
             "value": "#1C1C1C"
+        },
+        {
+            "name": "show_todo",
+            "title": "Show todo list",
+            "type": "radio",
+            "value": "always",
+            "options": [
+                {
+                    "value": "always",
+                    "label": "Always"
+                },
+                {
+                    "value": "hover",
+                    "label": "Onhover"
+                },
+                {
+                    "value": "never",
+                    "label": "Never"
+                }
+            ]
         }
     ]
 }

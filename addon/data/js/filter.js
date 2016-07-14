@@ -5,7 +5,7 @@
 const HIDE_FILTER_MSG = 'hide_filter';
 const FILTER_MSG = 'filter';
 //preferences
-const BACKGROUND_FILTER_LOCATION = 'background_filter';
+const BACKGROUND_FILTER_LOCATION_PREF = 'background_filter';
 const BACKGROUND_FILTER_OPACITY_PREF = 'background_filter_opacity';
 const BACKGROUND_FILTER_COLOR_PREF = 'background_filter_color';
 
@@ -23,7 +23,7 @@ var TabTrekkerFilter = {
             return;
         }
 
-        var location = data[BACKGROUND_FILTER_LOCATION];
+        var location = data[BACKGROUND_FILTER_LOCATION_PREF];
         var opacity = data[BACKGROUND_FILTER_OPACITY_PREF];
         var color = data[BACKGROUND_FILTER_COLOR_PREF];
 
@@ -49,7 +49,7 @@ var TabTrekkerFilter = {
             return;
         }
 
-        var location = data[BACKGROUND_FILTER_LOCATION];
+        var location = data[BACKGROUND_FILTER_LOCATION_PREF];
 
         switch(location) {
             case 'background_image':

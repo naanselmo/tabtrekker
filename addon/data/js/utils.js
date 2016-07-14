@@ -31,6 +31,20 @@ var TabTrekkerUtils = {
             g: parseInt(result[2], 16),
             b: parseInt(result[3], 16)
         } : null;
+    },
+
+    /**
+     * Saves an order to the local storage.
+     */
+    saveLocalStorage: function(id, data) {
+        localStorage.setItem(id, data);
+    },
+
+    /**
+     * Loads an order from the local storage.
+     */
+    retrieveLocalStorage: function(id) {
+        return window.localStorage.getItem('id');
     }
 };
 
